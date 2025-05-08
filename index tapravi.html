@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O.S.E</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/blood-crow');
+    
+    body {
+      background-image: url(urhova\ slika\ 3.png);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: red;
+      text-align: center;
+      font-family: 'Blood Crow', sans-serif;
+      text-shadow: 2px 2px 5px black;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .logo {
+      margin-top: 20vh;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: transparent;
+      border-radius: 10px;
+      box-shadow: none;
+      color: red;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      font-family: 'Blood Crow', sans-serif;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      margin: 20px 0;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: transparent;
+      color: red;
+      font-family: 'Blood Crow', sans-serif;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    input[type="text"]::placeholder {
+      color: red;
+      opacity: 0.7;
+      font-family: 'Blood Crow', sans-serif;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: 'Blood Crow', sans-serif;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    button:hover {
+      background-color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <img src="OSE_transparent.png" alt="O.S.E" class="logo">
+
+  <div class="container">
+    <h2>ENTER ANYTHING</h2>
+    <input type="text" id="userInput" placeholder="TYPE ANYTHING HERE">
+    <button onclick="redirectToImage()">SUBMIT</button>
+  </div>
+
+  <script>
+    function redirectToImage() {
+      const images = [
+        "jakobova slika.jpg",        // 70% chance
+        "matejeva slika 1.png",      // Fixed: added missing comma here
+        "matejeva slika 2.jpeg",
+        "matejeva slika 3.png",
+        "matejeva slika 4.jpg",
+        "oskarjeva slika.jpg",
+        "poezija 1.jpg",           
+        "poezija 2.jpg"            
+      ];
+      
+      // More reliable random selection
+      const randomValue = Math.random(); // Between 0 and 1
+      
+      let imageUrl;
+      if (randomValue < 0.7) {
+        imageUrl = images[0]; // 70% chance for jakobova slika.jpg
+      } else {
+        // 30% chance distributed evenly among the other 7 images
+        const otherImages = images.slice(1);
+        imageUrl = otherImages[Math.floor(Math.random() * otherImages.length)];
+      }
+      
+      // Ensure we always redirect to something
+      window.location.href = imageUrl || images[0];
+    }
+
+    document.getElementById("userInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        redirectToImage();
+      }
+    });
+  </script>
+</body>
+</html>
